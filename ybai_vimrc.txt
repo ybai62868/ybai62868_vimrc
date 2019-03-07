@@ -1,0 +1,140 @@
+"Basics {
+    set nocompatible
+"}
+
+"*******************************************************
+"General {
+    syntax enable                   "Syntax highlighting enable
+    syntax on                       "Allow other scheme replacing default scheme
+    scriptencoding utf-8
+    set encoding=utf-8
+    set fileencodings=utf-8,chinese
+    set scrolljump=15
+    set history=100                 "Store a ton of history
+"   set spell                       "Spell checking on
+    filetype plugin on              "Load corresponding plug-in for file type
+"}
+
+
+"Vim UI {
+    set background=light            "Assume a dark background
+    set showmode                    "Display the current mode
+    set showcmd                     "Show partial commands in status line and
+                                    "Selected characters in visual mode
+    set ruler                       "Show cursor current position
+    set cursorline                  "Highlight current line
+    "set cursorcolumn                "Highlight current column
+    set number                      "Line numbers on
+    "set relativenumber
+    set showmatch                   "Show matching brackets/parenthesis
+    set matchpairs+=<:>,=:;
+    set incsearch                   "Find as you type search
+    set hlsearch                    "Highlight search terms
+    set ignorecase                  "Case insensitive search
+    set wildmenu                    "Show list instead of just completing
+    set laststatus=2                "Always show status bar
+    set statusline+=%F
+    
+"    colorscheme amcolors             
+ "  let g:molokai_original = 0
+"   colorscheme pyte
+"   colorscheme ampresent
+"}
+
+"Formatting {
+    set wrap                        "Wrap long lines or not
+    set autoindent                  "Indent at the same level of the previous line
+    filetype indent on              "Auto indent based on language
+    "set pastetoggle=<F9>            "For not paste mess
+    set expandtab                   "Expand <TAB> to blanks 
+    set shiftwidth=4                "设置格式化时制表符占用空格数
+    set tabstop=4                   "设置编辑时制表符占用空格数
+    set softtabstop=4               "把连续数量的空格看做一个制表符         
+    "set foldmethod=indent           "Fold code based on indent
+    "set foldmethod=syntax           "Fold code based on syntax
+    set foldmethod=manual           "Fold code based on manual
+    set nofoldenable                "Close fold code when started
+"}
+
+"Remap {
+    let mapleader=";"               "Define shortcut key prefix
+    "Define line head and tail
+    nmap LB 0
+    nmap LE $
+    "Close current split window
+    nmap <Leader>q :q<CR>
+    map! <C-\> <ESC>:q<CR>  
+    "Travel windows by order
+    nnoremap nw <C-W><C-W>
+    "Jump to right,left,up,down window
+    nnoremap <Leader>lw <C-W>l      
+    nnoremap <Leader>hw <C-W>h
+    nnoremap <Leader>kw <C-W>k
+    nnoremap <Leader>jw <C-W>j     
+    "For move in normal mode
+    imap <C-j> <ESC>                
+    nmap <silent> <RIGHT>         :cnext<CR>
+    nmap <silent> <RIGHT><RIGHT>  :cnfile<CR><C-G>
+    nmap <silent> <LEFT>          :cprev<CR>
+    nmap <silent> <LEFT><LEFT>    :cpfile<CR><C-G>
+    "Inser time by shortcut
+    iab xdt <c-r>=strftime("=======20%y-%m-%d %H:%M(%A)=======")<cr>
+    
+"}
+
+
+"Functions { 
+
+    "Remember exit position
+    autocmd BufReadPost * if line("'\"")>0&&line("'\"")<=line("$") | exe "normal g'\"" | endif
+    "Show md syntax as markdown
+    au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+    "Display immediately
+"   autocmd BufReadPost $MYVIMRC source $MYVIMRC
+    "Don't Chinese spell check
+"   autocmd FileType tex setlocal spelllang=en_us,cn
+"   set t_ti=t_te=
+"   change word to uppercase, I love this very much
+    inoremap <C-u> <esc>gUiwea
+    
+
+
+
+    "Plug-in configuration
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
+    endif
+
+    "Plug-in developed by myself
+    if filereadable(expand("~/.vimrc.selfplugin"))
+        source ~/.vimrc.selfplugin
+    endif
+
+
+"============================================================================
+" Make :help appear in a full-screen tab, instead of a window
+"============================================================================
+
+    "Only apply to .txt files...
+    "augroup HelpInTabs
+    "    autocmd!
+    "    autocmd BufEnter  *.txt   call HelpInNewTab()
+    "augroup END
+
+    "Only apply to help files...
+    "function! HelpInNewTab ()
+    "    if &buftype == 'help'
+    "        "Convert the help window to a tab...
+    "        execute "normal \<C-W>T"
+    "    endif
+    "endfunction
+"}
+
+
+
+
+
+
+
+
+
