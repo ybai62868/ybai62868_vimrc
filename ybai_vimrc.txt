@@ -25,17 +25,20 @@
     set cursorline                  "Highlight current line
     "set cursorcolumn                "Highlight current column
     set number                      "Line numbers on
-    "set relativenumber
+    set relativenumber
     set showmatch                   "Show matching brackets/parenthesis
     set matchpairs+=<:>,=:;
     set incsearch                   "Find as you type search
+    exec "nohlsearch" 
     set hlsearch                    "Highlight search terms
     set ignorecase                  "Case insensitive search
+    set smartcase
     set wildmenu                    "Show list instead of just completing
     set laststatus=2                "Always show status bar
     set statusline+=%F
     
-"    colorscheme amcolors             
+    "colorscheme amcolors
+    "colorscheme snazzy
  "  let g:molokai_original = 0
 "   colorscheme pyte
 "   colorscheme ampresent
@@ -57,7 +60,7 @@
 "}
 
 "Remap {
-    let mapleader=";"               "Define shortcut key prefix
+    let mapleader=" "               "Define shortcut key prefix
     "Define line head and tail
     nmap LB 0
     nmap LE $
@@ -79,9 +82,27 @@
     nmap <silent> <LEFT><LEFT>    :cpfile<CR><C-G>
     "Inser time by shortcut
     iab xdt <c-r>=strftime("=======20%y-%m-%d %H:%M(%A)=======")<cr>
-    
+    map Q :q<CR>
+    map S :w<CR> 
+    noremap j 5j
+    noremap k 5k
+    noremap <Leader><CR> :nohl<CR>
+
 "}
 
+"PlugInstall{
+
+    call plug#begin('~/.vim/plugged')
+
+    Plug 'vim-airline/vim-airline'
+    Plug 'connorholyday/vim-snazzy'
+
+
+    call plug#end()
+    color snazzy    
+    let g:SnazzyTransparent = 1
+
+"}
 
 "Functions { 
 
